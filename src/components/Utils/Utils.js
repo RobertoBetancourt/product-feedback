@@ -1,7 +1,7 @@
 import React from 'react'
 // Material UI
 import { Button, CssBaseline, Grid, TextField } from '@mui/material'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { createTheme, styled, ThemeProvider } from '@mui/material/styles'
 // React Hook Form
 import { useController } from 'react-hook-form'
 
@@ -61,10 +61,22 @@ export const CustomThemeProvider = (props) => {
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#AD1FEA'
+        main: '#C75AF6'
       },
-      secondary: {
-        main: '#4661E6'
+      info: {
+        main: '#3A4374'
+      }
+    },
+    typography: {
+      fontFamily: '"Jost", sans-serif',
+      fontWeightLight: 300,
+      fontWeightRegular: 400,
+      fontWeightMedium: 500,
+      h6: {
+        color: '#3A4374'
+      },
+      body1: {
+        color: '#647196'
       }
     }
   })
@@ -78,3 +90,29 @@ export const CustomThemeProvider = (props) => {
     </>
   )
 }
+
+export const CustomButton = styled(Button)(({ theme }) => ({
+  color: '#4661E6',
+  borderRadius: 10,
+  margin: 6,
+  textTransform: 'none',
+  fontWeight: 600,
+  backgroundColor: '#F2F4FF',
+  boxShadow: 'none',
+  '&:hover': {
+    backgroundColor: '#CFD7FF'
+  }
+}))
+
+export const CustomSelectedButton = styled(Button)(({ theme }) => ({
+  color: '#FFFFFF',
+  borderRadius: 10,
+  margin: 6,
+  textTransform: 'none',
+  fontWeight: 600,
+  backgroundColor: '#4661E6',
+  boxShadow: 'none',
+  '&:hover': {
+    backgroundColor: '#4661E6'
+  }
+}))
