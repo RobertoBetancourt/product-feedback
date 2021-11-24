@@ -3,7 +3,9 @@ import { CustomButton, CustomSelectedButton } from '../Utils/Utils'
 
 const FeedbackTag = ({ children, filter = null, setFilter }) => {
   const handleFilter = () => {
-    setFilter(children)
+    if (setFilter) {
+      setFilter(children)
+    }
   }
 
   if (filter === children) {

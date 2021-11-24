@@ -33,7 +33,6 @@ const Dashboard = (props) => {
           {dataToShow.map(element =>
             <FeedbackCard
               key={element.id}
-              filter={filter}
               setFilter={setFilter}
               dispatch={dispatch}
               info={element}

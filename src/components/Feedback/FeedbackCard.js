@@ -9,8 +9,11 @@ import { Button, Card, CardContent, Grid, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import ChatBubbleTwoToneIcon from '@mui/icons-material/ChatBubbleTwoTone'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import { useNavigate } from 'react-router'
 
-const FeedbackCard = ({ dispatch, info, setFilter }) => {
+const FeedbackCard = ({ disableOnClick = false, dispatch = null, info, setFilter = null }) => {
+  const navigate = useNavigate()
+
   return (
     <Card sx={{ marginBottom: 2 }}>
       <CardContent>
@@ -51,7 +54,7 @@ const FeedbackCard = ({ dispatch, info, setFilter }) => {
           </Grid>
           <Grid item xs={3}>
             <div style={{ height: '100%', display: 'flex', alignItems: 'center' }}>
-              <Button color='info' startIcon={<ChatBubbleTwoToneIcon />}>
+              <Button onClick={() => disableOnClick ? null : navigate(`feedback/${info.id}`)} color='info' startIcon={<ChatBubbleTwoToneIcon />}>
                 <Typography>{info.comments.length}</Typography>
               </Button>
             </div>

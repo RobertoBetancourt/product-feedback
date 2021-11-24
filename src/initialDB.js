@@ -15,7 +15,30 @@ export const initialDB = {
       votes: 99,
       title: 'Add a dark theme option',
       description: 'It would help people with light sensitivities and who prefer dark mode.',
-      comments: [],
+      comments: [
+        {
+          id: 0,
+          author: 'Elijah Moss',
+          username: 'hexagon.bestagon',
+          comment: 'Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device’s dark mode turns on without the bright background it currently has.',
+          comments: []
+        },
+        {
+          id: 1,
+          author: 'James Skinner',
+          username: 'hummingbird1',
+          comment: 'Second this! I do a lot of late night coding and reading. Adding a dark theme can be great for preventing eye strain and the headaches that result. It’s also quite a trend with modern apps and  apparently saves battery life.',
+          comments: [
+            {
+              id: 2,
+              author: 'Anne Valentine ',
+              username: 'annev1990',
+              comment: 'While waiting for dark mode, there are browser extensions that will also do the job. Search for "dark theme” followed by your browser. There might be a need to turn off the extension for sites with naturally black backgrounds though.',
+              comments: []
+            }
+          ]
+        }
+      ],
       alreadyLiked: false,
       isOwner: false,
       type: 'Feature'
