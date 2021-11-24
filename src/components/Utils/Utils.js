@@ -29,13 +29,11 @@ export const CustomInput = ({ form, handleSubmit, onSubmit, onCancel, button }) 
             field: { ref, value, ...inputProps },
             fieldState: { error },
             formState,
-            // label,
             type,
             options,
             ...otherProps
           } = form[field]
 
-          console.log(inputProps)
           return (
             <Grid key={index} item xs={12}>
               <TextField
@@ -43,7 +41,6 @@ export const CustomInput = ({ form, handleSubmit, onSubmit, onCancel, button }) 
                 fullWidth
                 helperText={error ? error.message : ''}
                 inputRef={ref}
-                // label={label}
                 type={type || 'text'}
                 select={type === 'select'}
                 value={value || ''}
@@ -130,10 +127,10 @@ export const CustomThemeProvider = (props) => {
   )
 }
 
-export const CustomContainer = ({ children, maxWidth = 'md' }) => {
+export const CustomContainer = ({ children, maxWidth = 'md', paddingTop = 50 }) => {
   return (
     <div style={{ backgroundColor: '#F7F8FD', height: '100%', minHeight: '100vh' }}>
-      <Container style={{ paddingTop: 50, paddingBottom: 20 }} maxWidth={maxWidth}>
+      <Container style={{ paddingTop: paddingTop, paddingBottom: 20 }} maxWidth={maxWidth}>
         {children}
       </Container>
     </div>

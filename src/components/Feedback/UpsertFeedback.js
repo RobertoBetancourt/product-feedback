@@ -1,5 +1,7 @@
-import { Card, CardContent, Typography } from '@mui/material'
-import React from 'react'
+import { Button, Card, CardContent, Typography } from '@mui/material'
+import AddCircleIcon from '@mui/icons-material/AddCircle'
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import React, { useContext } from 'react'
 // React Hook Form
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
@@ -9,12 +11,22 @@ import {
   CustomInput,
   useCustomController
 } from '../Utils/Utils'
+import { add, LocalDatabase } from '../../localDatabase'
 
 const UpsertFeedback = (props) => {
+  const { dispatch } = useContext(LocalDatabase)
   const { control, handleSubmit } = useForm()
-  const onSubmit = data => console.log(data)
-
   const navigate = useNavigate()
+
+  const onSubmit = (data) => {
+    const feedback = {
+      title: data.title,
+      type: data.category,
+      description: data.description
+    }
+    dispatch(add(feedback))
+    navigate('/')
+  }
 
   const form = {
     title: useCustomController({
@@ -31,7 +43,6 @@ const UpsertFeedback = (props) => {
       label: 'Category',
       type: 'select',
       options: [
-        { value: 'All', label: 'All' },
         { value: 'UI', label: 'UI' },
         { value: 'UX', label: 'UX' },
         { value: 'Enhancement', label: 'Enhancement' },
@@ -51,10 +62,28 @@ const UpsertFeedback = (props) => {
   }
 
   return (
-    <CustomContainer maxWidth='sm'>
+    <CustomContainer paddingTop={30} maxWidth='sm'>
+      <Button onClick={() => navigate('/')} sx={{ marginBottom: 5 }} startIcon={<ChevronLeftIcon />}>
+        Go back
+      </Button>
+      <div style={{ position: 'relative' }}>
+        <AddCircleIcon
+          sx={{
+            position: 'absolute',
+            top: -20,
+            bottom: 0,
+            left: 30,
+            right: 0,
+            fontSize: 50,
+            color: '#AD1FEA'
+          }}
+        />
+      </div>
       <Card sx={{ padding: 3 }}>
         <CardContent>
-          <Typography variant='h5' style={{ marginBottom: 20 }}>Create New Feedback</Typography>
+          <Typography variant='h5' style={{ marginBottom: 20 }}>
+            Create New Feedback
+          </Typography>
           <CustomInput
             form={form}
             handleSubmit={handleSubmit}

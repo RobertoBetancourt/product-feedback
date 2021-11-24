@@ -1,6 +1,6 @@
 
 import React, { useReducer } from 'react'
-import { FILTER, UP_VOTE } from './constants'
+import { ADD, UP_VOTE } from './constants'
 import { initialDB } from './initialDB'
 
 export const LocalDatabase = React.createContext()
@@ -10,10 +10,10 @@ export const upVote = (feedbackID) => ({
   feedbackID
 })
 
-// export const filter = (feedbackType) => ({
-//   type: FILTER,
-//   feedbackType
-// })
+export const add = (feedback) => ({
+  type: ADD,
+  newElement: feedback
+})
 
 const dataReducer = (state = initialDB, action) => {
   if (action.type === UP_VOTE) {
@@ -33,21 +33,24 @@ const dataReducer = (state = initialDB, action) => {
     }
   }
 
-  // if (action.type === FILTER) {
-  //   if (action.feedbackType === 'All') {
-  //     return {
-  //       ...state
-  //     }
-  //   }
-
-  //   return {
-  //     ...state,
-  //     feedback: state.feedback.filter(element => {
-  //       console.log(element.type, action.feedbackType)
-  //       return element.type === action.feedbackType
-  //     })
-  //   }
-  // }
+  if (action.type === ADD) {
+    return {
+      ...state,
+      feedback: [
+        ...state.feedback,
+        {
+          id: state.feedback.length + 1,
+          votes: 0,
+          title: action.newElement.title,
+          description: action.newElement.description,
+          comments: [],
+          alreadyLiked: false,
+          isOwner: true,
+          type: action.newElement.type
+        }
+      ]
+    }
+  }
 }
 
 const localState = JSON.parse(localStorage.getItem('data'))
