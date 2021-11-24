@@ -1,13 +1,14 @@
 
 import React, { useContext } from 'react'
 // Components
-import DashboardCard from './DashboardCard'
 import DashboardSidebar from './DashboardSidebar'
 import DashboardHeader from './DashboardHeader'
 // Context
 import { LocalDatabase } from '../../localDatabase'
 // Material UI
-import { Container, Grid } from '@mui/material'
+import { Grid } from '@mui/material'
+import { CustomContainer, filterFeedback, sortFeedback } from '../Utils/Utils'
+import FeedbackCard from '../Feedback/FeedbackCard'
 
 const Dashboard = (props) => {
   const { data: { feedback }, dispatch } = useContext(LocalDatabase)
@@ -16,32 +17,30 @@ const Dashboard = (props) => {
   const [dataToShow, setDataToShow] = React.useState(feedback)
 
   React.useEffect(() => {
-    if (filter === 'All') {
-      setDataToShow(feedback)
-    } else {
-      const feedbackToShow = feedback.filter(element => element.type === filter)
-      setDataToShow(feedbackToShow)
-    }
-  }, [feedback, filter])
-
-  const handleSort = (event) => {
-    setSort(event.target.value)
-  }
+    const filteredData = filterFeedback({ feedback, filter })
+    const sortedData = sortFeedback({ feedback: filteredData, sort })
+    setDataToShow([...sortedData])
+  }, [feedback, filter, sort])
 
   return (
-    <div style={{ backgroundColor: '#F7F8FD', height: '100%', minHeight: '100vh' }}>
-      <Container style={{ paddingTop: 50, paddingBottom: 20 }} maxWidth='lg'>
-        <Grid container spacing={3}>
-          <Grid item xs={3}>
-            <DashboardSidebar filter={filter} setFilter={setFilter} />
-          </Grid>
-          <Grid item xs={9}>
-            <DashboardHeader dataToShow={dataToShow} sort={sort} handleSort={handleSort} />
-            {dataToShow.map(element => <DashboardCard filter={filter} setFilter={setFilter} dispatch={dispatch} key={element.id} info={element} />)}
-          </Grid>
+    <CustomContainer maxWidth='lg'>
+      <Grid container spacing={3}>
+        <Grid item xs={3}>
+          <DashboardSidebar filter={filter} setFilter={setFilter} />
         </Grid>
-      </Container>
-    </div>
+        <Grid item xs={9}>
+          <DashboardHeader dataToShow={dataToShow} sort={sort} setSort={setSort} />
+          {dataToShow.map(element =>
+            <FeedbackCard
+              key={element.id}
+              filter={filter}
+              setFilter={setFilter}
+              dispatch={dispatch}
+              info={element}
+            />)}
+        </Grid>
+      </Grid>
+    </CustomContainer>
   )
 }
 export default Dashboard

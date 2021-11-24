@@ -3,14 +3,14 @@ import React from 'react'
 // Context
 import { upVote } from '../../localDatabase'
 // Components
-import FeedbackTag from '../Feedback/FeedbackTag'
+import FeedbackTag from './FeedbackTag'
 // Material UI
 import { Button, Card, CardContent, Grid, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import ChatBubbleTwoToneIcon from '@mui/icons-material/ChatBubbleTwoTone'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
-const DashboardCard = ({ dispatch, info, setFilter }) => {
+const FeedbackCard = ({ dispatch, info, setFilter }) => {
   return (
     <Card sx={{ marginBottom: 2 }}>
       <CardContent>
@@ -62,4 +62,4 @@ const DashboardCard = ({ dispatch, info, setFilter }) => {
   )
 }
 
-export default DashboardCard
+export default FeedbackCard

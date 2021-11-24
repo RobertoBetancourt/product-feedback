@@ -23,7 +23,7 @@ const dataReducer = (state = initialDB, action) => {
         if (element.id === action.feedbackID) {
           return ({
             ...element,
-            likes: element.likes + 1,
+            votes: element.votes + 1,
             alreadyLiked: true
           })
         }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, CardContent, Typography } from '@mui/material'
-import FeedbackTag from './FeedbackTag'
+import FeedbackTag from '../Feedback/FeedbackTag'
 
 const DashboardSidebar = ({ filter, setFilter }) => {
   const tags = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature']

@@ -3,6 +3,7 @@ import React from 'react'
 import { Button, Card, CardContent, Grid, MenuItem, Select, Typography } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest'
+import { useNavigate } from 'react-router'
 
 const innerTheme = createTheme({
   palette: {
@@ -34,7 +35,13 @@ const innerTheme = createTheme({
 })
 
 const DashboardHeader = (props) => {
-  const { dataToShow, sort, handleSort } = props
+  const { dataToShow, sort, setSort } = props
+
+  const navigate = useNavigate()
+
+  const handleSort = (event) => {
+    setSort(event.target.value)
+  }
 
   return (
     <ThemeProvider theme={innerTheme}>
@@ -81,6 +88,7 @@ const DashboardHeader = (props) => {
                 style={{ textTransform: 'none' }}
                 color='secondary'
                 variant='contained'
+                onClick={() => navigate('add-feedback')}
               >
                 + Add Feedback
               </Button>
