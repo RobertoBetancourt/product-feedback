@@ -1,4 +1,4 @@
-import { Button, Card, CardContent } from '@mui/material'
+import { Button, Card, CardContent, Typography } from '@mui/material'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import React, { useContext } from 'react'
 // React Hook Form
@@ -11,7 +11,7 @@ import {
 } from '../Utils/Utils'
 import { add, LocalDatabase } from '../../localDatabase'
 import FeedbackCard from './FeedbackCard'
-import Comments from './Comments'
+import CommentsList from './CommentsList'
 
 const ShowFeedback = (props) => {
   const { data: { feedback }, dispatch } = useContext(LocalDatabase)
@@ -78,7 +78,8 @@ const ShowFeedback = (props) => {
 
       <Card sx={{ marginBottom: 2 }}>
         <CardContent>
-          <Comments comments={currentElement.comments} level={0} />
+          <Typography variant='h6' sx={{ fontWeight: 600 }}>{currentElement.comments.length} Comments</Typography>
+          <CommentsList comments={currentElement.comments} level={0} />
         </CardContent>
       </Card>
 

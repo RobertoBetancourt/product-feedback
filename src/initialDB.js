@@ -31,10 +31,18 @@ export const initialDB = {
           comments: [
             {
               id: 2,
-              author: 'Anne Valentine ',
+              author: 'Anne Valentine',
               username: 'annev1990',
               comment: 'While waiting for dark mode, there are browser extensions that will also do the job. Search for "dark theme” followed by your browser. There might be a need to turn off the extension for sites with naturally black backgrounds though.',
-              comments: []
+              comments: [
+                {
+                  id: 3,
+                  author: 'Ryan Welles',
+                  username: 'voyager.344',
+                  comment: "Good point! Using any kind of style extension is great and can be highly customizable, like the ability to change contrast and brightness. I'd prefer not to use one of such extensions, however, for security and privacy reasons.",
+                  comments: []
+                }
+              ]
             }
           ]
         }
