@@ -22,4 +22,4 @@ You can learn more in the [React Hook Form Documentation](https://react-hook-for
 Notistack is a Snackbar library which makes it extremely easy to display notifications on your web apps. It is highly customizable and enables you to stack snackbars/toasts on top of one another.
 You can learn more in the [Notistack Documentation](https://iamhosseindhv.com/notistack).
 
-*A database was simulated using React Context, useReducer, and localStorage.
+*A database was simulated using React Context, useReducer, and localStorage.*
