@@ -1,0 +1,32 @@
+.roadmap-container {
+  /* box-sizing: border-box; */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: -32px;
+  width: calc(100% + 32px);
+  margin-left: -32px;
+  margin-bottom: 34px;
+}
+
+.roadmap-header-container {
+  /* box-sizing: border-box; */
+  margin: 0;
+  flex-direction: row;
+  flex-basis: 100%;
+  flex-grow: 0;
+  max-width: 100%;
+  padding-top: 32px;
+  padding-left: 32px;
+}
+
+.roadmap-column {
+  /* box-sizing: border-box; */
+  margin: 0;
+  flex-direction: row;
+  flex-basis: 33.333333%;
+  flex-grow: 0;
+  max-width: 33.333333%;
+  padding-left: 32px;
+  padding-top: 32px;
+}

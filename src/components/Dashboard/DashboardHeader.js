@@ -48,15 +48,15 @@ const DashboardHeader = (props) => {
       <Card sx={{ backgroundColor: '#373F68', marginBottom: 2 }}>
         <CardContent>
           <Grid columns={20} container spacing={3} alignItems='flex-end'>
-            <Grid item xs={5}>
+            <Grid item xs={0} sm={5} md={5}>
               <div style={{ display: 'flex' }}>
-                <SettingsSuggestIcon style={{ marginRight: 10, color: 'white' }} />
-                <Typography sx={{ fontWeight: 600, color: 'white', fontSize: 20 }}>
+                <SettingsSuggestIcon sx={{ display: { xs: 'none', sm: 'block' }, marginRight: 1.5, color: 'white' }} />
+                <Typography sx={{ display: { xs: 'none', sm: 'block' }, fontWeight: 600, color: 'white', fontSize: 20 }}>
                   {dataToShow.length} Suggestions
                 </Typography>
               </div>
             </Grid>
-            <Grid item xs={11}>
+            <Grid item xs={10} md={11}>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Typography
                   sx={{
@@ -83,7 +83,7 @@ const DashboardHeader = (props) => {
                 </Select>
               </div>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={2} sm={2} md={4}>
               <Button
                 style={{ textTransform: 'none' }}
                 color='secondary'

@@ -52,11 +52,11 @@ const CommentCard = (props) => {
         key={element.id}
         sx={{ marginTop: 3.5, paddingLeft: level > 0 ? 6 : 0 }}
       >
-        <Grid item xs={1}>
+        <Grid item xs={2} sm={1}>
           <Avatar {...stringAvatar(element.author)} />
         </Grid>
-        <Grid item xs={11} container>
-          <Grid item xs={11}>
+        <Grid item xs={10} sm={11} container>
+          <Grid item xs={9} sm={11}>
             <Typography sx={{ fontWeight: 600, color: '#3A4374' }}>
               {element.author}
             </Typography>
@@ -70,7 +70,7 @@ const CommentCard = (props) => {
               {element.comment}
             </Typography>
           </Grid>
-          <Grid item xs={1}>
+          <Grid item xs={3} sm={1}>
             <Button
               onClick={() => setReply(true)}
               style={{ textTransform: 'none', color: '#4661E6' }}

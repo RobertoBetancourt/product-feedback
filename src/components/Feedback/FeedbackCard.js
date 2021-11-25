@@ -18,7 +18,7 @@ const FeedbackCard = ({ disableOnClick = false, dispatch = null, info, setFilter
     <Card sx={{ marginBottom: 2 }}>
       <CardContent>
         <Grid container columns={20} spacing={5}>
-          <Grid item xs={2}>
+          <Grid item xs={4} sm={3} md={2} lg={2}>
             <Box
               sx={{
                 paddingTop: 1.5,
@@ -43,7 +43,7 @@ const FeedbackCard = ({ disableOnClick = false, dispatch = null, info, setFilter
               </div>
             </Box>
           </Grid>
-          <Grid item xs={15}>
+          <Grid item xs={16} sm={17} md={18} lg={15}>
             <div
               style={{ cursor: 'pointer' }}
               onClick={() => disableOnClick ? null : navigate(`feedback/${info.id}`)}
@@ -57,7 +57,7 @@ const FeedbackCard = ({ disableOnClick = false, dispatch = null, info, setFilter
             </Typography>
             <FeedbackTag setFilter={setFilter} variant='contained'>{info.type}</FeedbackTag>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={5} lg={3}>
             <div style={{ height: '100%', display: 'flex', alignItems: 'center' }}>
               <Button
                 onClick={() => disableOnClick ? null : navigate(`feedback/${info.id}`)}

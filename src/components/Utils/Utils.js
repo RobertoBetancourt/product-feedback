@@ -66,7 +66,7 @@ export const CustomInput = ({ form, handleSubmit, onSubmit, onDelete, onCancel, 
           )
         })}
         {onDelete &&
-          <Grid item xs={3}>
+          <Grid item xs={12} sm={3}>
             <Button
               style={{ textTransform: 'none' }}
               color='error'
@@ -79,7 +79,7 @@ export const CustomInput = ({ form, handleSubmit, onSubmit, onDelete, onCancel, 
           </Grid>}
         <Grid item xs />
         {onCancel &&
-          <Grid item xs={3}>
+          <Grid item xs={12} sm={3}>
             <Button
               style={{ textTransform: 'none' }}
               color='primary'
@@ -90,7 +90,7 @@ export const CustomInput = ({ form, handleSubmit, onSubmit, onDelete, onCancel, 
               Cancel
             </Button>
           </Grid>}
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={4}>
           <Button
             style={{ textTransform: 'none' }}
             type='submit'

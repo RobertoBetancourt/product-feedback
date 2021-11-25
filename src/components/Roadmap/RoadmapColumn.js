@@ -9,7 +9,7 @@ const RoadmapColumn = (props) => {
   const { columnDetails: { title, description, color }, cards } = props
 
   return (
-    <Grid item xs={4}>
+    <Grid item xs={12} sm={4}>
       <Typography variant='h6' style={{ fontSize: 19, fontWeight: 600 }}>
         {`${title} (${cards.length})`}
       </Typography>
