@@ -1,6 +1,20 @@
 # Product feedback
 Project made for demonstration purposes thats allows you to add feedback to a product and comment on the suggestions of others, as well as see the product roadmap.
 
+## Instalation
+```git clone https://github.com/RobertoBetancourt/product-feedback.git```
+
+```npm install```
+
+```npm start```
+
+
+## Live website
+https://robertobetancourt.github.io/product-feedback/
+
+*A database was simulated using React Context, useReducer, and localStorage.*
+
+
 ## Technologies used
 **React:**
 A JavaScript library for building user interfaces
@@ -21,5 +35,3 @@ You can learn more in the [React Hook Form Documentation](https://react-hook-for
 **Notistack:**
 Notistack is a Snackbar library which makes it extremely easy to display notifications on your web apps. It is highly customizable and enables you to stack snackbars/toasts on top of one another.
 You can learn more in the [Notistack Documentation](https://iamhosseindhv.com/notistack).
-
-*A database was simulated using React Context, useReducer, and localStorage.*
