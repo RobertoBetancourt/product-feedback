@@ -137,7 +137,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
   .dashboard-sidebar-container {
     flex-basis: 25%;
     flex-grow: 0;
