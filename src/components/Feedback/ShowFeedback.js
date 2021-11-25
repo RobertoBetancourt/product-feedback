@@ -7,57 +7,47 @@ import { useNavigate, useParams } from 'react-router'
 // Utils
 import {
   CustomContainer,
+  CustomInput,
   useCustomController
 } from '../Utils/Utils'
-import { add, LocalDatabase } from '../../localDatabase'
+import { comment, LocalDatabase } from '../../localDatabase'
 import FeedbackCard from './FeedbackCard'
 import CommentsList from './CommentsList'
 
+const getMaxLevel = (comments) => {
+  let maxLevel = 0
+  for (let i = 0; i < comments.length; i++) {
+    maxLevel = Math.max(maxLevel, comments[i].level)
+  }
+  return maxLevel
+}
+
 const ShowFeedback = (props) => {
   const { data: { feedback }, dispatch } = useContext(LocalDatabase)
-  const { control, handleSubmit } = useForm()
+  const { reset, control, handleSubmit } = useForm()
   const navigate = useNavigate()
   const params = useParams()
 
   const currentElement = feedback.find(element => element.id === parseInt(params.feedbackID))
+  const maxLevel = getMaxLevel(currentElement.comments)
 
   const onSubmit = (data) => {
-    const feedback = {
-      title: data.title,
-      type: data.category,
-      description: data.description
+    const newComment = {
+      ...data,
+      feedbackID: parseInt(params.feedbackID),
+      parentCommentID: null,
+      level: 0
     }
-    dispatch(add(feedback))
-    navigate('/')
+    dispatch(comment(newComment))
+    reset()
   }
 
   const form = {
-    title: useCustomController({
-      name: 'title',
+    comment: useCustomController({
+      name: 'comment',
       control,
-      rules: { required: 'Feedback Title is required' },
-      label: 'Feedback Title',
-      type: 'text'
-    }),
-    category: useCustomController({
-      name: 'category',
-      control,
-      rules: { required: 'Feedback Title is required' },
-      label: 'Category',
-      type: 'select',
-      options: [
-        { value: 'UI', label: 'UI' },
-        { value: 'UX', label: 'UX' },
-        { value: 'Enhancement', label: 'Enhancement' },
-        { value: 'Bug', label: 'Bug' },
-        { value: 'Feature', label: 'Feature' }
-      ]
-    }),
-    description: useCustomController({
-      name: 'description',
-      control,
-      rules: { required: 'Feedback Detail is required' },
-      label: 'Feedback Detail',
+      rules: { required: 'Comment is required', maxLength: 255 },
+      label: 'Type your comment here',
       type: 'text',
       multiline: true,
       rows: 3
@@ -75,14 +65,33 @@ const ShowFeedback = (props) => {
         info={currentElement}
         disableOnClick
       />
-
       <Card sx={{ marginBottom: 2 }}>
         <CardContent>
-          <Typography variant='h6' sx={{ fontWeight: 600 }}>{currentElement.comments.length} Comments</Typography>
-          <CommentsList comments={currentElement.comments} level={0} />
+          <Typography variant='h6' sx={{ fontWeight: 600 }}>
+            {currentElement.comments.length} Comments
+          </Typography>
+          <CommentsList
+            feedbackID={currentElement.id}
+            comments={currentElement.comments}
+            dispatch={dispatch}
+            level={0}
+            maxLevel={maxLevel}
+          />
         </CardContent>
       </Card>
-
+      <Card>
+        <CardContent>
+          <Typography variant='h6' sx={{ fontWeight: 600, marginBottom: 2 }}>
+            Add Comment
+          </Typography>
+          <CustomInput
+            form={form}
+            handleSubmit={handleSubmit}
+            onSubmit={onSubmit}
+            button='Post Comment'
+          />
+        </CardContent>
+      </Card>
     </CustomContainer>
   )
 }

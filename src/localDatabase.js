@@ -1,6 +1,8 @@
 
 import React, { useReducer } from 'react'
-import { ADD, UP_VOTE } from './constants'
+// Constants
+import { ADD, UP_VOTE, COMMENT } from './constants'
+// Database seeding
 import { initialDB } from './initialDB'
 
 export const LocalDatabase = React.createContext()
@@ -13,6 +15,11 @@ export const upVote = (feedbackID) => ({
 export const add = (feedback) => ({
   type: ADD,
   newElement: feedback
+})
+
+export const comment = (newComment) => ({
+  type: COMMENT,
+  newComment
 })
 
 const dataReducer = (state = initialDB, action) => {
@@ -49,6 +56,33 @@ const dataReducer = (state = initialDB, action) => {
           type: action.newElement.type
         }
       ]
+    }
+  }
+
+  if (action.type === COMMENT) {
+    return {
+      ...state,
+      feedback: state.feedback.map(element => {
+        console.log(action.newComment)
+        if (element.id === action.newComment.feedbackID) {
+          return ({
+            ...element,
+            comments: [
+              ...element.comments,
+              {
+                id: Math.floor((1 + Math.random()) * 0x10000),
+                author: 'Martin Moraga',
+                username: 'martin.moraga',
+                comment: action.newComment.comment,
+                parentComment: action.newComment.parentCommentID,
+                level: action.newComment.level
+              }
+            ]
+          })
+        }
+
+        return element
+      })
     }
   }
 }

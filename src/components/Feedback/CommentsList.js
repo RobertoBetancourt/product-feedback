@@ -2,22 +2,41 @@ import React from 'react'
 // Components
 import CommentCard from './CommentCard'
 
-const CommentsList = ({ comments, level = 0, parentResponse = null }) => {
+const CommentsList = (props) => {
+  const {
+    comments,
+    dispatch,
+    level = 0,
+    maxLevel,
+    feedbackID,
+    parentID = null,
+    parentInfo = null
+  } = props
+
   return (
     comments.map((element, index) => {
+      if (element.level !== level ||
+        parentID !== element.parentComment ||
+        level > maxLevel) { return null }
+
       return (
-        <div key={element.id} style={{ marginLeft: level === 1 ? 50 : 0 }}>
+        <div key={element.id}>
           <CommentCard
-            index={index}
             element={element}
-            parentResponse={parentResponse}
+            index={index}
+            feedbackID={feedbackID}
+            dispatch={dispatch}
+            parentInfo={parentInfo}
+            level={level}
           />
-          {element.comments.length > 0 &&
-            <CommentsList
-              parentResponse={element.username}
-              comments={element.comments}
-              level={level + 1}
-            />}
+          <CommentsList
+            comments={comments}
+            dispatch={dispatch}
+            level={level + 1}
+            feedbackID={feedbackID}
+            parentID={element.id}
+            parentInfo={element}
+          />
         </div>
       )
     })

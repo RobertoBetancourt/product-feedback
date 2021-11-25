@@ -12,7 +12,7 @@ export function useCustomController (props) {
   return { ...controllerFunctions, ...rest }
 }
 
-export const CustomInput = ({ form, handleSubmit, onSubmit, onCancel, button }) => {
+export const CustomInput = ({ form, handleSubmit, onSubmit, onCancel, button, alignRight }) => {
   const formArray = Object.keys(form)
 
   return (
@@ -34,12 +34,20 @@ export const CustomInput = ({ form, handleSubmit, onSubmit, onCancel, button }) 
             ...otherProps
           } = form[field]
 
+          let errorText = ''
+          if (error) {
+            if (error.type === 'maxLength') {
+              errorText = 'You exceeded the maximum number of characters'
+            } else {
+              errorText = error.messagw
+            }
+          }
           return (
             <Grid key={index} item xs={12}>
               <TextField
                 error={!!error}
                 fullWidth
-                helperText={error ? error.message : ''}
+                helperText={errorText}
                 inputRef={ref}
                 type={type || 'text'}
                 select={type === 'select'}
@@ -57,7 +65,7 @@ export const CustomInput = ({ form, handleSubmit, onSubmit, onCancel, button }) 
             </Grid>
           )
         })}
-        <Grid item xs={5} />
+        <Grid item xs />
         {onCancel &&
           <Grid item xs={3}>
             <Button
@@ -69,9 +77,8 @@ export const CustomInput = ({ form, handleSubmit, onSubmit, onCancel, button }) 
             >
               Cancel
             </Button>
-
           </Grid>}
-        <Grid item xs={onCancel ? 4 : 12}>
+        <Grid item xs={4}>
           <Button
             style={{ textTransform: 'none' }}
             type='submit'
@@ -82,7 +89,6 @@ export const CustomInput = ({ form, handleSubmit, onSubmit, onCancel, button }) 
             {button || 'Submit'}
           </Button>
         </Grid>
-        {/* </div> */}
       </Grid>
     </form>
   )
