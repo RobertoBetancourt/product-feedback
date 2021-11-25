@@ -6,30 +6,10 @@ import RoadmapHeader from './RoadmapHeader'
 // Context
 import { LocalDatabase } from '../../localDatabase'
 // Material UI
-import { Container, Grid, Tab, Tabs, Typography } from '@mui/material'
+import { Container, Tab, Tabs } from '@mui/material'
 import { CustomContainer } from '../Utils/Utils'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { Box } from '@mui/system'
-
-function TabPanel (props) {
-  const { children, value, index, ...other } = props
-
-  return (
-    <div
-      role='tabpanel'
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  )
-}
+import './Roadmap.css'
 
 const Roadmap = (props) => {
   const { data: { roadmap } } = useContext(LocalDatabase)
@@ -67,10 +47,10 @@ const Roadmap = (props) => {
 
   return (
     <CustomContainer paddingTop={20} maxWidth='lg'>
-      <Grid sx={{ marginBottom: 3 }} container spacing={4}>
-        <Grid item xs={12}>
+      <div className='roadmap-container'>
+        <div className='header-container'>
           <RoadmapHeader />
-        </Grid>
+        </div>
 
         {matches &&
           <>
@@ -98,7 +78,7 @@ const Roadmap = (props) => {
               />
             )
           })}
-      </Grid>
+      </div>
     </CustomContainer>
   )
 }

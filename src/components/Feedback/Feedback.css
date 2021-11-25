@@ -1,0 +1,73 @@
+.feedback-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-direction: row;
+  margin-top: -40px;
+  width: calc(100% + 40px);
+  margin-left: -40px;
+}
+
+.feedback-card-votes-container {
+  padding-left: 40px;
+  padding-top: 40px;
+  margin: 0;
+  flex-direction: row;
+  flex-basis: 20%;
+  flex-grow: 0;
+  max-width: 20%;
+}
+
+.feedback-card-content-container {
+  padding-left: 40px;
+  padding-top: 40px;
+  margin: 0;
+  flex-direction: row;
+  flex-basis: 80%;
+  flex-grow: 0;
+  max-width: 80%;
+}
+
+.feedback-card-comments-container {
+  padding-left: 40px;
+  padding-top: 40px;
+  margin: 0;
+  flex-direction: row;
+  flex-basis: 20%;
+  flex-grow: 0;
+  max-width: 20%;
+}
+
+@media (min-width: 600px) {
+  .feedback-card-votes-container {
+    flex-basis: 15%;
+    flex-grow: 0;
+    max-width: 15%;
+  }
+
+  .feedback-card-content-container {
+    flex-basis: 70%;
+    flex-grow: 0;
+    max-width: 70%;
+  }
+  
+  .feedback-card-comments-container {
+    flex-basis: 15%;
+    flex-grow: 0;
+    max-width: 15%;
+  }
+}
+
+@media (min-width: 900px) {
+  .feedback-card-votes-container {
+    flex-basis: 10%;
+    flex-grow: 0;
+    max-width: 10%;
+  }
+
+  .feedback-card-content-container {
+    flex-basis: 75%;
+    flex-grow: 0;
+    max-width: 75%;
+  }
+}

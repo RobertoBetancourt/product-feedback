@@ -122,13 +122,13 @@ const dataReducer = (state = initialDB, action) => {
   }
 }
 
-const localState = JSON.parse(localStorage.getItem('data'))
+const localState = JSON.parse(localStorage.getItem('feedback-data'))
 
 export const LocalDatabaseProvider = ({ children }) => {
   const [data, dispatch] = useReducer(dataReducer, localState || initialDB)
 
   React.useEffect(() => {
-    localStorage.setItem('data', JSON.stringify(data))
+    localStorage.setItem('feedback-data', JSON.stringify(data))
   }, [data])
 
   return (

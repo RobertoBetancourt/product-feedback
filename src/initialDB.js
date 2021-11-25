@@ -5,7 +5,16 @@ export const initialDB = {
       votes: 112,
       title: 'Add tags for solutions',
       description: 'Easier to search for solutions based on a specific stack',
-      comments: [],
+      comments: [
+        {
+          id: 0,
+          author: 'Joandra Salome',
+          username: 'joandra.salome',
+          comment: 'I fully support the idea, and would add that tags should be self-explanatory and simple to understand.',
+          parentComment: null,
+          level: 0
+        }
+      ],
       alreadyLiked: false,
       isOwner: false,
       type: 'Enhancement'
@@ -68,7 +77,24 @@ export const initialDB = {
       votes: 51,
       title: 'Allow image/video upload to feedback',
       description: 'Images and screencasts can enhance comments on solutions.',
-      comments: [],
+      comments: [
+        {
+          id: 0,
+          author: 'James Skinner',
+          username: 'hummingbird1',
+          comment: "That's an excellent idea! This would make it easier to provide clear feedback with very specific steps.",
+          parentComment: null,
+          level: 0
+        },
+        {
+          id: 1,
+          author: 'Bethel Alyson',
+          username: 'alyson_392',
+          comment: 'I agree, but the size of the files should be limited.',
+          parentComment: 0,
+          level: 1
+        }
+      ],
       alreadyLiked: false,
       isOwner: false,
       type: 'Enhancement'
@@ -78,7 +104,16 @@ export const initialDB = {
       votes: 42,
       title: 'Ability to follow others',
       description: 'Stay updated on comments and solutions other people post.',
-      comments: [],
+      comments: [
+        {
+          id: 0,
+          author: 'Caetlin Amberly',
+          username: 'caetlin.amberly',
+          comment: 'I second the idea! This would make it easier for us to follow up with specific people and generate a better exchange of ideas.',
+          parentComment: null,
+          level: 0
+        }
+      ],
       alreadyLiked: false,
       isOwner: false,
       type: 'Feature'

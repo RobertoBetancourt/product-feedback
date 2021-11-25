@@ -3,27 +3,19 @@ import React, { useContext } from 'react'
 // Components
 import DashboardSidebar from './DashboardSidebar'
 import DashboardHeader from './DashboardHeader'
+import ResponsiveDrawer from './ResponsiveDrawer'
+import FeedbackCard from '../Feedback/FeedbackCard'
 // Context
 import { LocalDatabase } from '../../localDatabase'
-// Material UI
-import { AppBar, Drawer, Grid, IconButton, Toolbar, Typography } from '@mui/material'
+// Utils
 import { CustomContainer, filterFeedback, sortFeedback } from '../Utils/Utils'
-import FeedbackCard from '../Feedback/FeedbackCard'
 import './Dashboard.css'
-import MenuIcon from '@mui/icons-material/Menu'
-import ResponsiveDrawer from './ResponsiveDrawer'
 
 const Dashboard = (props) => {
   const { data: { feedback }, dispatch } = useContext(LocalDatabase)
   const [filter, setFilter] = React.useState('All')
   const [sort, setSort] = React.useState('most-upvotes')
   const [dataToShow, setDataToShow] = React.useState(feedback)
-
-  const [mobileOpen, setMobileOpen] = React.useState(false)
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen)
-  }
 
   React.useEffect(() => {
     const filteredData = filterFeedback({ feedback, filter })
@@ -34,13 +26,13 @@ const Dashboard = (props) => {
   return (
     <CustomContainer maxWidth='lg'>
       <ResponsiveDrawer filter={filter} setFilter={setFilter} />
-      <Grid container spacing={3}>
-        <Grid sx={{ display: { xs: 'none', sm: 'block' } }} item lg={3}>
-          <Grid item container direction='row' spacing={3} alignItems='center'>
+      <div className='dashboard-container'>
+        <div className='dashboard-sidebar-container'>
+          <div className='dashboard-sidebar-group'>
             <DashboardSidebar filter={filter} setFilter={setFilter} />
-          </Grid>
-        </Grid>
-        <Grid item sm={12} lg={9}>
+          </div>
+        </div>
+        <div className='dashboard-main-container'>
           <DashboardHeader dataToShow={dataToShow} sort={sort} setSort={setSort} />
           {dataToShow.map(element =>
             <FeedbackCard
@@ -49,8 +41,8 @@ const Dashboard = (props) => {
               dispatch={dispatch}
               info={element}
             />)}
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     </CustomContainer>
   )
 }

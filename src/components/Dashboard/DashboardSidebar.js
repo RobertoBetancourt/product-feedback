@@ -1,8 +1,9 @@
 import React from 'react'
-import { Button, Card, CardContent, Grid, Typography } from '@mui/material'
+import { Button, Card, CardContent, Typography } from '@mui/material'
 import FeedbackTag from '../Feedback/FeedbackTag'
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
 import { useNavigate } from 'react-router'
+import './Dashboard.css'
 
 const DashboardSidebar = ({ filter, setFilter }) => {
   const navigate = useNavigate()
@@ -10,7 +11,7 @@ const DashboardSidebar = ({ filter, setFilter }) => {
 
   return (
     <>
-      <Grid item xs={12} sm={3} md={4} lg={12}>
+      <div className='product-name-container'>
         <Card
           sx={{
             height: 170,
@@ -28,8 +29,8 @@ const DashboardSidebar = ({ filter, setFilter }) => {
             </Typography>
           </CardContent>
         </Card>
-      </Grid>
-      <Grid item xs={12} sm={5} md={4} lg={12}>
+      </div>
+      <div className='tags-container'>
         <Card sx={{ marginTop: 2 }}>
           <CardContent>
             {tags.map(tag =>
@@ -43,8 +44,8 @@ const DashboardSidebar = ({ filter, setFilter }) => {
               </FeedbackTag>)}
           </CardContent>
         </Card>
-      </Grid>
-      <Grid item xs={12} sm={4} md={4} lg={12}>
+      </div>
+      <div className='dashboard-roadmap-container'>
         <Card sx={{ marginTop: 2 }}>
           <CardContent>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -80,7 +81,7 @@ const DashboardSidebar = ({ filter, setFilter }) => {
             </div>
           </CardContent>
         </Card>
-      </Grid>
+      </div>
     </>
   )
 }

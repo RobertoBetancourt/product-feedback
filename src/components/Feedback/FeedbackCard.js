@@ -1,15 +1,15 @@
-
 import React from 'react'
 // Context
 import { upVote } from '../../localDatabase'
 // Components
 import FeedbackTag from './FeedbackTag'
 // Material UI
-import { Button, Card, CardContent, Grid, Typography } from '@mui/material'
+import { Button, Card, CardContent, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import ChatBubbleTwoToneIcon from '@mui/icons-material/ChatBubbleTwoTone'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { useNavigate } from 'react-router'
+import './Feedback.css'
 
 const FeedbackCard = ({ disableOnClick = false, dispatch = null, info, setFilter = null }) => {
   const navigate = useNavigate()
@@ -17,8 +17,8 @@ const FeedbackCard = ({ disableOnClick = false, dispatch = null, info, setFilter
   return (
     <Card sx={{ marginBottom: 2 }}>
       <CardContent>
-        <Grid container columns={20} spacing={5}>
-          <Grid item xs={4} sm={3} md={2} lg={2}>
+        <div className='feedback-card-container'>
+          <div className='feedback-card-votes-container'>
             <Box
               sx={{
                 paddingTop: 1.5,
@@ -42,8 +42,8 @@ const FeedbackCard = ({ disableOnClick = false, dispatch = null, info, setFilter
                 </div>
               </div>
             </Box>
-          </Grid>
-          <Grid item xs={16} sm={17} md={18} lg={15}>
+          </div>
+          <div className='feedback-card-content-container'>
             <div
               style={{ cursor: 'pointer' }}
               onClick={() => disableOnClick ? null : navigate(`feedback/${info.id}`)}
@@ -56,8 +56,8 @@ const FeedbackCard = ({ disableOnClick = false, dispatch = null, info, setFilter
               {info.description}
             </Typography>
             <FeedbackTag setFilter={setFilter} variant='contained'>{info.type}</FeedbackTag>
-          </Grid>
-          <Grid item xs={5} lg={3}>
+          </div>
+          <div className='feedback-card-comments-container'>
             <div style={{ height: '100%', display: 'flex', alignItems: 'center' }}>
               <Button
                 onClick={() => disableOnClick ? null : navigate(`feedback/${info.id}`)}
@@ -67,8 +67,8 @@ const FeedbackCard = ({ disableOnClick = false, dispatch = null, info, setFilter
                 <Typography>{info.comments.length}</Typography>
               </Button>
             </div>
-          </Grid>
-        </Grid>
+          </div>
+        </div>
       </CardContent>
     </Card>
   )
