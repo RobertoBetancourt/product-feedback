@@ -12,6 +12,7 @@ import {
   useCustomController
 } from '../Utils/Utils'
 import { add, deleteFeedback, edit, LocalDatabase } from '../../localDatabase'
+import { useSnackbar } from 'notistack'
 
 const UpsertFeedback = (props) => {
   const { data: { feedback }, dispatch } = useContext(LocalDatabase)
@@ -19,6 +20,14 @@ const UpsertFeedback = (props) => {
   const navigate = useNavigate()
   const { feedbackID } = useParams()
   const feedbackElement = feedback.find(element => element.id === parseInt(feedbackID))
+  const { enqueueSnackbar } = useSnackbar()
+
+  const handleClick = (action) => {
+    enqueueSnackbar(
+      `Feedback ${action} successfully`,
+      { variant: 'success' }
+    )
+  }
 
   const onSubmit = (data) => {
     const feedback = {
@@ -34,11 +43,13 @@ const UpsertFeedback = (props) => {
       dispatch(add(feedback))
     }
     navigate('/')
+    handleClick(feedbackID ? 'edited' : 'added')
   }
 
   const handleDelete = () => {
     dispatch(deleteFeedback(feedbackElement.id))
     navigate('/')
+    handleClick('deleted')
   }
 
   const form = {
@@ -110,7 +121,7 @@ const UpsertFeedback = (props) => {
             onSubmit={onSubmit}
             button={feedbackID ? 'Edit Feedback' : 'Add Feedback'}
             onCancel={() => navigate('/')}
-            onDelete={handleDelete}
+            onDelete={feedbackID ? handleDelete : null}
           />
         </CardContent>
       </Card>

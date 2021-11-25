@@ -10,19 +10,22 @@ import Roadmap from './components/Roadmap/Roadmap'
 // Utils
 import { CustomThemeProvider } from './components/Utils/Utils'
 import { LocalDatabaseProvider } from './localDatabase'
+import { SnackbarProvider } from 'notistack'
 
 function App () {
   return (
     <LocalDatabaseProvider>
       <CustomThemeProvider>
-        <Routes>
-          {/* <Route path='/login' element={<Login />} /> */}
-          <Route path='/' element={<Dashboard />} />
-          <Route path='/roadmap' element={<Roadmap />} />
-          <Route path='add-feedback' element={<UpsertFeedback />} />
-          <Route path='edit-feedback/:feedbackID' element={<UpsertFeedback />} />
-          <Route path='feedback/:feedbackID' element={<ShowFeedback />} />
-        </Routes>
+        <SnackbarProvider maxSnack={3}>
+          <Routes>
+            {/* <Route path='/login' element={<Login />} /> */}
+            <Route path='/' element={<Dashboard />} />
+            <Route path='/roadmap' element={<Roadmap />} />
+            <Route path='add-feedback' element={<UpsertFeedback />} />
+            <Route path='edit-feedback/:feedbackID' element={<UpsertFeedback />} />
+            <Route path='feedback/:feedbackID' element={<ShowFeedback />} />
+          </Routes>
+        </SnackbarProvider>
       </CustomThemeProvider>
     </LocalDatabaseProvider>
   )
