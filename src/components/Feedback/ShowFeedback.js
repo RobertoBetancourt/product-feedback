@@ -31,12 +31,15 @@ const ShowFeedback = (props) => {
   const currentElement = feedback.find(element => element.id === parseInt(params.feedbackID))
   const maxLevel = getMaxLevel(currentElement.comments)
 
+  console.log({ currentElement })
   const onSubmit = (data) => {
     const newComment = {
       ...data,
       feedbackID: parseInt(params.feedbackID),
       parentCommentID: null,
-      level: 0
+      level: 0,
+      alreadyLiked: false,
+      isOwner: true
     }
     dispatch(comment(newComment))
     reset()
@@ -56,9 +59,19 @@ const ShowFeedback = (props) => {
 
   return (
     <CustomContainer paddingTop={30} maxWidth='md'>
-      <Button onClick={() => navigate('/')} sx={{ marginBottom: 5 }} startIcon={<ChevronLeftIcon />}>
-        Go back
-      </Button>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div>
+          <Button onClick={() => navigate('/')} sx={{ marginBottom: 5 }} startIcon={<ChevronLeftIcon />}>
+            Go back
+          </Button>
+        </div>
+        {currentElement.isOwner &&
+          <div>
+            <Button onClick={() => navigate(`/edit-feedback/${currentElement.id}`)} variant='contained'>
+              Edit feedback
+            </Button>
+          </div>}
+      </div>
       <FeedbackCard
         key={currentElement.id}
         dispatch={dispatch}

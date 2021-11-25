@@ -22,7 +22,9 @@ const CommentCard = (props) => {
       ...data,
       feedbackID,
       level: level + 1,
-      parentCommentID: element.id
+      parentCommentID: element.id,
+      alreadyLiked: false,
+      isOwner: true
     }
     dispatch(comment(newComment))
     setReply(false)

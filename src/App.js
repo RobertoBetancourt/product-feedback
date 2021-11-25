@@ -18,6 +18,7 @@ function App () {
           {/* <Route path='/login' element={<Login />} /> */}
           <Route path='/' element={<Dashboard />} />
           <Route path='add-feedback' element={<UpsertFeedback />} />
+          <Route path='edit-feedback/:feedbackID' element={<UpsertFeedback />} />
           <Route path='feedback/:feedbackID' element={<ShowFeedback />} />
         </Routes>
       </CustomThemeProvider>

@@ -71,7 +71,7 @@ const dataReducer = (state = initialDB, action) => {
               ...element.comments,
               {
                 id: Math.floor((1 + Math.random()) * 0x10000),
-                author: 'Martin Moraga',
+                author: 'Martín Moraga',
                 username: 'martin.moraga',
                 comment: action.newComment.comment,
                 parentComment: action.newComment.parentCommentID,
