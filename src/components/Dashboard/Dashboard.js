@@ -11,7 +11,7 @@ import { CustomContainer, filterFeedback, sortFeedback } from '../Utils/Utils'
 import FeedbackCard from '../Feedback/FeedbackCard'
 import './Dashboard.css'
 import MenuIcon from '@mui/icons-material/Menu'
-const drawerWidth = 240
+import ResponsiveDrawer from './ResponsiveDrawer'
 
 const Dashboard = (props) => {
   const { data: { feedback }, dispatch } = useContext(LocalDatabase)
@@ -33,40 +33,7 @@ const Dashboard = (props) => {
 
   return (
     <CustomContainer maxWidth='lg'>
-      <AppBar
-        position='fixed'
-        sx={{ display: { xs: 'block', sm: 'none' } }}
-      >
-        <Toolbar>
-          <Typography variant='h6' noWrap sx={{ flexGrow: 1 }} component='div'>
-            Responsive drawer
-          </Typography>
-          <IconButton
-            color='inherit'
-            aria-label='open drawer'
-            edge='end'
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant='temporary'
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true // Better open performance on mobile.
-        }}
-        sx={{
-          display: { xs: 'block', sm: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 }
-        }}
-        anchor='right'
-      >
-        <DashboardSidebar filter={filter} setFilter={setFilter} />
-      </Drawer>
+      <ResponsiveDrawer filter={filter} setFilter={setFilter} />
       <Grid container spacing={3}>
         <Grid sx={{ display: { xs: 'none', sm: 'block' } }} item lg={3}>
           <Grid item container direction='row' spacing={3} alignItems='center'>
