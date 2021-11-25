@@ -94,5 +94,4 @@ export const initialDB = {
       type: 'Bug'
     }
   ]
-
 }

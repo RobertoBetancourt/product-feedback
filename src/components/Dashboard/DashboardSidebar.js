@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardContent, Typography } from '@mui/material'
 import FeedbackTag from '../Feedback/FeedbackTag'
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
 
 const DashboardSidebar = ({ filter, setFilter }) => {
   const tags = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature']
@@ -35,6 +36,46 @@ const DashboardSidebar = ({ filter, setFilter }) => {
             >
               {tag}
             </FeedbackTag>)}
+        </CardContent>
+      </Card>
+      <Card sx={{ marginTop: 2 }}>
+        <CardContent>
+          <Typography variant='h6' style={{ fontWeight: 600 }}>Roadmap</Typography>
+          <div style={{ display: 'flex', marginTop: 10, flex: 1 }}>
+            <div>
+              <FiberManualRecordIcon sx={{ fontSize: 12, color: '#F49F85' }} />
+            </div>
+            <div style={{ display: 'flex', marginLeft: 10, flex: 1, justifyContent: 'space-between' }}>
+              <Typography>Planned</Typography>
+              <Typography>2</Typography>
+            </div>
+          </div>
+          <div style={{ display: 'flex', flex: 1, marginTop: 10 }}>
+            <div>
+              <FiberManualRecordIcon sx={{ fontSize: 12, color: '#AD1FEA' }} />
+            </div>
+            <div style={{ display: 'flex', marginLeft: 10, flex: 1, justifyContent: 'space-between' }}>
+              <Typography>In-Progress</Typography>
+              <Typography>2</Typography>
+            </div>
+          </div>
+          <div style={{ display: 'flex', flex: 1, marginTop: 10 }}>
+            <div>
+              <FiberManualRecordIcon sx={{ fontSize: 12, color: '#62BCFA' }} />
+            </div>
+            <div style={{ display: 'flex', marginLeft: 10, flex: 1, justifyContent: 'space-between' }}>
+              <Typography>Live</Typography>
+              <Typography>2</Typography>
+            </div>
+          </div>
+          {/* <div>
+            <FiberManualRecordIcon sx={{ fontSize: 12, color: '#AD1FEA' }} />
+            <Typography>In-Progress</Typography>
+          </div>
+          <div>
+            <FiberManualRecordIcon sx={{ fontSize: 12, color: '#62BCFA' }} />
+            <Typography>Live</Typography>
+          </div> */}
         </CardContent>
       </Card>
     </>

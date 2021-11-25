@@ -1,7 +1,7 @@
 
 import React, { useReducer } from 'react'
 // Constants
-import { ADD, UP_VOTE, COMMENT } from './constants'
+import { ADD, UP_VOTE, COMMENT, EDIT } from './constants'
 // Database seeding
 import { initialDB } from './initialDB'
 
@@ -15,6 +15,11 @@ export const upVote = (feedbackID) => ({
 export const add = (feedback) => ({
   type: ADD,
   newElement: feedback
+})
+
+export const edit = (feedback) => ({
+  type: EDIT,
+  editedElement: feedback
 })
 
 export const comment = (newComment) => ({
@@ -78,6 +83,24 @@ const dataReducer = (state = initialDB, action) => {
                 level: action.newComment.level
               }
             ]
+          })
+        }
+
+        return element
+      })
+    }
+  }
+
+  if (action.type === EDIT) {
+    return {
+      ...state,
+      feedback: state.feedback.map(element => {
+        if (element.id === action.editedElement.id) {
+          return ({
+            ...element,
+            title: action.editedElement.title,
+            description: action.editedElement.description,
+            type: action.editedElement.type
           })
         }
 

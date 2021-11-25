@@ -4,27 +4,35 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import React, { useContext } from 'react'
 // React Hook Form
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 // Utils
 import {
   CustomContainer,
   CustomInput,
   useCustomController
 } from '../Utils/Utils'
-import { add, LocalDatabase } from '../../localDatabase'
+import { add, edit, LocalDatabase } from '../../localDatabase'
 
 const UpsertFeedback = (props) => {
-  const { dispatch } = useContext(LocalDatabase)
+  const { data: { feedback }, dispatch } = useContext(LocalDatabase)
   const { control, handleSubmit } = useForm()
   const navigate = useNavigate()
+  const { feedbackID } = useParams()
+  const feedbackElement = feedback.find(element => element.id === parseInt(feedbackID))
 
   const onSubmit = (data) => {
     const feedback = {
+      ...(feedbackID && { id: feedbackElement.id }),
       title: data.title,
       type: data.category,
       description: data.description
     }
-    dispatch(add(feedback))
+
+    if (feedbackID) {
+      dispatch(edit(feedback))
+    } else {
+      dispatch(add(feedback))
+    }
     navigate('/')
   }
 
@@ -34,7 +42,8 @@ const UpsertFeedback = (props) => {
       control,
       rules: { required: 'Feedback Title is required' },
       label: 'Feedback Title',
-      type: 'text'
+      type: 'text',
+      defaultValue: feedbackElement ? feedbackElement.title : null
     }),
     category: useCustomController({
       name: 'category',
@@ -48,7 +57,8 @@ const UpsertFeedback = (props) => {
         { value: 'Enhancement', label: 'Enhancement' },
         { value: 'Bug', label: 'Bug' },
         { value: 'Feature', label: 'Feature' }
-      ]
+      ],
+      defaultValue: feedbackElement ? feedbackElement.type : null
     }),
     description: useCustomController({
       name: 'description',
@@ -57,7 +67,8 @@ const UpsertFeedback = (props) => {
       label: 'Feedback Detail',
       type: 'text',
       multiline: true,
-      rows: 3
+      rows: 3,
+      defaultValue: feedbackElement ? feedbackElement.description : null
     })
   }
 
@@ -81,14 +92,14 @@ const UpsertFeedback = (props) => {
       </div>
       <Card sx={{ padding: 3 }}>
         <CardContent>
-          <Typography variant='h5' style={{ marginBottom: 20 }}>
-            Create New Feedback
+          <Typography variant='h5' style={{ marginBottom: 20, fontWeight: 500 }}>
+            {feedbackID ? `Editing '${feedbackElement.title}'` : 'Create New Feedback'}
           </Typography>
           <CustomInput
             form={form}
             handleSubmit={handleSubmit}
             onSubmit={onSubmit}
-            button='Add Feedback'
+            button={feedbackID ? 'Edit Feedback' : 'Add Feedback'}
             onCancel={() => navigate('/')}
           />
         </CardContent>
