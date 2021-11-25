@@ -59,7 +59,11 @@ const FeedbackCard = ({ disableOnClick = false, dispatch = null, info, setFilter
           </Grid>
           <Grid item xs={3}>
             <div style={{ height: '100%', display: 'flex', alignItems: 'center' }}>
-              <Button onClick={() => disableOnClick ? null : navigate(`feedback/${info.id}`)} color='info' startIcon={<ChatBubbleTwoToneIcon />}>
+              <Button
+                onClick={() => disableOnClick ? null : navigate(`feedback/${info.id}`)}
+                color='info'
+                startIcon={<ChatBubbleTwoToneIcon />}
+              >
                 <Typography>{info.comments.length}</Typography>
               </Button>
             </div>

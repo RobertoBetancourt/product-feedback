@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom'
 import Dashboard from './components/Dashboard/Dashboard'
 import ShowFeedback from './components/Feedback/ShowFeedback'
 import UpsertFeedback from './components/Feedback/UpsertFeedback'
+import Roadmap from './components/Roadmap/Roadmap'
 // import Login from './components/Login/Login'
 // Utils
 import { CustomThemeProvider } from './components/Utils/Utils'
@@ -17,6 +18,7 @@ function App () {
         <Routes>
           {/* <Route path='/login' element={<Login />} /> */}
           <Route path='/' element={<Dashboard />} />
+          <Route path='/roadmap' element={<Roadmap />} />
           <Route path='add-feedback' element={<UpsertFeedback />} />
           <Route path='edit-feedback/:feedbackID' element={<UpsertFeedback />} />
           <Route path='feedback/:feedbackID' element={<ShowFeedback />} />

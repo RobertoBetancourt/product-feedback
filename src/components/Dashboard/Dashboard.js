@@ -9,6 +9,7 @@ import { LocalDatabase } from '../../localDatabase'
 import { Grid } from '@mui/material'
 import { CustomContainer, filterFeedback, sortFeedback } from '../Utils/Utils'
 import FeedbackCard from '../Feedback/FeedbackCard'
+import './Dashboard.css'
 
 const Dashboard = (props) => {
   const { data: { feedback }, dispatch } = useContext(LocalDatabase)
@@ -41,5 +42,25 @@ const Dashboard = (props) => {
       </Grid>
     </CustomContainer>
   )
+
+  // return (
+  //   <CustomContainer maxWidth='lg'>
+  //     <div className='dashboard-container'>
+  //       <div className='dashboard-sidebar-container'>
+  //         <DashboardSidebar filter={filter} setFilter={setFilter} />
+  //       </div>
+  //       <div className='dashboard-cards-container'>
+  //         <DashboardHeader dataToShow={dataToShow} sort={sort} setSort={setSort} />
+  //         {dataToShow.map(element =>
+  //           <FeedbackCard
+  //             key={element.id}
+  //             setFilter={setFilter}
+  //             dispatch={dispatch}
+  //             info={element}
+  //           />)}
+  //       </div>
+  //     </div>
+  //   </CustomContainer>
+  // )
 }
 export default Dashboard

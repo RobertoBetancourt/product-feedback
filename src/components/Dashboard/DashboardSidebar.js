@@ -1,9 +1,11 @@
 import React from 'react'
-import { Card, CardContent, Typography } from '@mui/material'
+import { Button, Card, CardContent, Typography } from '@mui/material'
 import FeedbackTag from '../Feedback/FeedbackTag'
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
+import { useNavigate } from 'react-router'
 
 const DashboardSidebar = ({ filter, setFilter }) => {
+  const navigate = useNavigate()
   const tags = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature']
 
   return (
@@ -40,12 +42,15 @@ const DashboardSidebar = ({ filter, setFilter }) => {
       </Card>
       <Card sx={{ marginTop: 2 }}>
         <CardContent>
-          <Typography variant='h6' style={{ fontWeight: 600 }}>Roadmap</Typography>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Typography variant='h6' style={{ fontWeight: 600 }}>Roadmap</Typography>
+            <Button onClick={() => navigate('/roadmap')} variant='text' style={{ minWidth: 0, textTransform: 'none', textDecoration: 'underline', color: '#4661E6' }}>View</Button>
+          </div>
           <div style={{ display: 'flex', marginTop: 10, flex: 1 }}>
             <div>
               <FiberManualRecordIcon sx={{ fontSize: 12, color: '#F49F85' }} />
             </div>
-            <div style={{ display: 'flex', marginLeft: 10, flex: 1, justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', marginLeft: 10, marginRight: 10, flex: 1, justifyContent: 'space-between' }}>
               <Typography>Planned</Typography>
               <Typography>2</Typography>
             </div>
@@ -54,7 +59,7 @@ const DashboardSidebar = ({ filter, setFilter }) => {
             <div>
               <FiberManualRecordIcon sx={{ fontSize: 12, color: '#AD1FEA' }} />
             </div>
-            <div style={{ display: 'flex', marginLeft: 10, flex: 1, justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', marginLeft: 10, marginRight: 10, flex: 1, justifyContent: 'space-between' }}>
               <Typography>In-Progress</Typography>
               <Typography>2</Typography>
             </div>
@@ -63,19 +68,11 @@ const DashboardSidebar = ({ filter, setFilter }) => {
             <div>
               <FiberManualRecordIcon sx={{ fontSize: 12, color: '#62BCFA' }} />
             </div>
-            <div style={{ display: 'flex', marginLeft: 10, flex: 1, justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', marginLeft: 10, marginRight: 10, flex: 1, justifyContent: 'space-between' }}>
               <Typography>Live</Typography>
               <Typography>2</Typography>
             </div>
           </div>
-          {/* <div>
-            <FiberManualRecordIcon sx={{ fontSize: 12, color: '#AD1FEA' }} />
-            <Typography>In-Progress</Typography>
-          </div>
-          <div>
-            <FiberManualRecordIcon sx={{ fontSize: 12, color: '#62BCFA' }} />
-            <Typography>Live</Typography>
-          </div> */}
         </CardContent>
       </Card>
     </>

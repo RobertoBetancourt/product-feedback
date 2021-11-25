@@ -1,7 +1,7 @@
 import React from 'react'
 import { CustomButton, CustomSelectedButton } from '../Utils/Utils'
 
-const FeedbackTag = ({ children, filter = null, setFilter }) => {
+const FeedbackTag = ({ children, filter = null, setFilter = null }) => {
   const handleFilter = () => {
     if (setFilter) {
       setFilter(children)

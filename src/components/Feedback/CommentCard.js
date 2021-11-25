@@ -45,7 +45,7 @@ const CommentCard = (props) => {
 
   return (
     <>
-      {index > 0 &&
+      {index > 0 && level === 0 &&
         <Divider style={{ marginTop: 25 }} />}
       <Grid
         container

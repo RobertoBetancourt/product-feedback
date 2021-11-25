@@ -47,7 +47,7 @@ const DashboardHeader = (props) => {
     <ThemeProvider theme={innerTheme}>
       <Card sx={{ backgroundColor: '#373F68', marginBottom: 2 }}>
         <CardContent>
-          <Grid columns={20} container spacing={3}>
+          <Grid columns={20} container spacing={3} alignItems='flex-end'>
             <Grid item xs={5}>
               <div style={{ display: 'flex' }}>
                 <SettingsSuggestIcon style={{ marginRight: 10, color: 'white' }} />

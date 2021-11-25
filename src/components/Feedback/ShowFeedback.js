@@ -61,8 +61,8 @@ const ShowFeedback = (props) => {
     <CustomContainer paddingTop={30} maxWidth='md'>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div>
-          <Button onClick={() => navigate('/')} sx={{ marginBottom: 5 }} startIcon={<ChevronLeftIcon />}>
-            Go back
+          <Button onClick={() => navigate('/')} sx={{ marginBottom: 5, textTransform: 'none' }} startIcon={<ChevronLeftIcon />}>
+            Go Back
           </Button>
         </div>
         {currentElement.isOwner &&

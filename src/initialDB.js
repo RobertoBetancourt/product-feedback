@@ -93,5 +93,49 @@ export const initialDB = {
       isOwner: false,
       type: 'Bug'
     }
-  ]
+  ],
+  roadmap: {
+    planned: [
+      {
+        id: 0,
+        title: 'More comprehensive reports',
+        description: 'It would be great to see a more detailed breakdown of solutions.',
+        category: 'Feature'
+      },
+      {
+        id: 1,
+        title: 'Learning paths',
+        description: 'Sequenced projects for different goals to help people improve.',
+        category: 'Feature'
+      }
+    ],
+    inProgress: [
+      {
+        id: 2,
+        title: 'One-click portfolio generation',
+        description: 'Add ability to create professional looking portfolio from profile.',
+        category: 'Feature'
+      },
+      {
+        id: 3,
+        title: 'Bookmark challenges',
+        description: 'Be able to bookmark challenges to take later on.',
+        category: 'Feature'
+      },
+      {
+        id: 4,
+        title: 'Animated solution screenshots',
+        description: 'Screenshots of solutions with animations don’t display correctly.',
+        category: 'Bug'
+      }
+    ],
+    live: [
+      {
+        id: 5,
+        title: 'Add micro-interactions',
+        description: 'Small animations at specific points can add delight.',
+        category: 'Enhancement'
+      }
+    ]
+  }
 }

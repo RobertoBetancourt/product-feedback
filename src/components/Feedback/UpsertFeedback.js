@@ -79,8 +79,12 @@ const UpsertFeedback = (props) => {
 
   return (
     <CustomContainer paddingTop={30} maxWidth='sm'>
-      <Button onClick={() => navigate('/')} sx={{ marginBottom: 5 }} startIcon={<ChevronLeftIcon />}>
-        Go back
+      <Button
+        onClick={() => navigate('/')}
+        sx={{ marginBottom: 5, textTransform: 'none' }}
+        startIcon={<ChevronLeftIcon />}
+      >
+        Go Back
       </Button>
       <div style={{ position: 'relative' }}>
         <AddCircleIcon
