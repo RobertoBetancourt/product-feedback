@@ -1,7 +1,7 @@
 
 import React, { useReducer } from 'react'
 // Constants
-import { ADD, UP_VOTE, COMMENT, EDIT } from './constants'
+import { ADD, UP_VOTE, COMMENT, EDIT, DELETE } from './constants'
 // Database seeding
 import { initialDB } from './initialDB'
 
@@ -25,6 +25,11 @@ export const edit = (feedback) => ({
 export const comment = (newComment) => ({
   type: COMMENT,
   newComment
+})
+
+export const deleteFeedback = (feedbackID) => ({
+  type: DELETE,
+  feedbackID
 })
 
 const dataReducer = (state = initialDB, action) => {
@@ -106,6 +111,13 @@ const dataReducer = (state = initialDB, action) => {
 
         return element
       })
+    }
+  }
+
+  if (action.type === DELETE) {
+    return {
+      ...state,
+      feedback: state.feedback.filter(element => element.id !== action.feedbackID)
     }
   }
 }

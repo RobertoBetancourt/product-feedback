@@ -44,7 +44,10 @@ const FeedbackCard = ({ disableOnClick = false, dispatch = null, info, setFilter
             </Box>
           </Grid>
           <Grid item xs={15}>
-            <div style={{ cursor: 'pointer' }} onClick={() => disableOnClick ? null : navigate(`feedback/${info.id}`)}>
+            <div
+              style={{ cursor: 'pointer' }}
+              onClick={() => disableOnClick ? null : navigate(`feedback/${info.id}`)}
+            >
               <Typography variant='h6'>
                 {info.title}
               </Typography>

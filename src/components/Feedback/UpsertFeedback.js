@@ -11,7 +11,7 @@ import {
   CustomInput,
   useCustomController
 } from '../Utils/Utils'
-import { add, edit, LocalDatabase } from '../../localDatabase'
+import { add, deleteFeedback, edit, LocalDatabase } from '../../localDatabase'
 
 const UpsertFeedback = (props) => {
   const { data: { feedback }, dispatch } = useContext(LocalDatabase)
@@ -33,6 +33,11 @@ const UpsertFeedback = (props) => {
     } else {
       dispatch(add(feedback))
     }
+    navigate('/')
+  }
+
+  const handleDelete = () => {
+    dispatch(deleteFeedback(feedbackElement.id))
     navigate('/')
   }
 
@@ -101,6 +106,7 @@ const UpsertFeedback = (props) => {
             onSubmit={onSubmit}
             button={feedbackID ? 'Edit Feedback' : 'Add Feedback'}
             onCancel={() => navigate('/')}
+            onDelete={handleDelete}
           />
         </CardContent>
       </Card>

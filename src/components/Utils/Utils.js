@@ -12,7 +12,7 @@ export function useCustomController (props) {
   return { ...controllerFunctions, ...rest }
 }
 
-export const CustomInput = ({ form, handleSubmit, onSubmit, onCancel, button, alignRight }) => {
+export const CustomInput = ({ form, handleSubmit, onSubmit, onDelete, onCancel, button, alignRight }) => {
   const formArray = Object.keys(form)
 
   return (
@@ -65,6 +65,18 @@ export const CustomInput = ({ form, handleSubmit, onSubmit, onCancel, button, al
             </Grid>
           )
         })}
+        {onDelete &&
+          <Grid item xs={3}>
+            <Button
+              style={{ textTransform: 'none' }}
+              color='error'
+              variant='contained'
+              fullWidth
+              onClick={onDelete}
+            >
+              Delete
+            </Button>
+          </Grid>}
         <Grid item xs />
         {onCancel &&
           <Grid item xs={3}>
